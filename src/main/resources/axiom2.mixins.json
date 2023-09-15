@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "me.ts.axiomtwo.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "IMixinCustomImGuiImplGlfw",
+    "MixinEditorUI",
+    "MixinGui"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "axiom2",
+	"version": "${version}",
+	"name": "Axiom 2",
+	"description": "Client-side building utility mod",
+	"authors": [
+		"Not Moulberry"
+	],
+	"license": "MIT",
+	"icon": "assets/axiom2/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "me.ts.axiomtwo.AxiomTwo"
+		]
+	},
+	"mixins": [
+		"axiom2.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}
