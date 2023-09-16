@@ -4,8 +4,9 @@ QOL features added to [Axiom](https://axiom.moulberry.com/).
 
 ## Features
 
-- When rotating your camera in Editor Mode, your mouse cursor will show the grabbed cursor icon, locked in the same place. When you release your cursor, the cursor still be in the same positon.
+- When rotating your camera in Editor Mode, your mouse cursor will lock in the same place.
   - This type of movement is similar to Roblox Studio's. People familiar with Roblox Studio can have similar controls.
+  - ![Locked Rotation](./docs/rotation.gif)
 - More to come!
 
 ## Controls
