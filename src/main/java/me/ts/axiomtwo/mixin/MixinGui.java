@@ -22,24 +22,27 @@ public class MixinGui {
     private static final ResourceLocation GRABBED_ICON = new ResourceLocation("axiom2", "pointer_grab.png");
 
     @Inject(method = "render(Lnet/minecraft/client/gui/GuiGraphics;F)V", at = @At("RETURN"))
-    public void onRender(GuiGraphics context, float f, CallbackInfo ci) {
-        if (AxiomTwo.showingGrab) {
-            ImVec2 mousePos = ((IMixinCustomImGuiImplGlfw) EditorUI.imguiGlfw).mousePosBackup();
-            int scaledX = (int) (EditorUI.getNewMouseX(mousePos.x)) * this.minecraft.getWindow().getGuiScaledWidth() / this.minecraft.getWindow().getScreenWidth();
-            int scaledY = (int) (EditorUI.getNewMouseY(mousePos.y)) * this.minecraft.getWindow().getGuiScaledHeight() / this.minecraft.getWindow().getScreenHeight();
-            final int textureScale = 10;
-            context.blit(
-                GRABBED_ICON,
-                scaledX - (textureScale / 2), scaledY,
-                0, 0,
-                textureScale, textureScale,
-                textureScale, textureScale
-            );
-        }
+    public void onRender(GuiGraphics guiGraphics, float partialTick, CallbackInfo ci) {
+        if (!AxiomTwo.showingGrab) return;
+
+        ImVec2 mousePos = ((IMixinCustomImGuiImplGlfw) EditorUI.imguiGlfw).mousePosBackup();
+
+        int scaledX = (int) (EditorUI.getNewMouseX(mousePos.x)) * this.minecraft.getWindow().getGuiScaledWidth() / this.minecraft.getWindow().getScreenWidth();
+        int scaledY = (int) (EditorUI.getNewMouseY(mousePos.y)) * this.minecraft.getWindow().getGuiScaledHeight() / this.minecraft.getWindow().getScreenHeight();
+
+        final int textureScale = 10;
+
+        guiGraphics.blit(
+            GRABBED_ICON,
+            scaledX - (textureScale / 2), scaledY,
+            0, 0,
+            textureScale, textureScale,
+            textureScale, textureScale
+        );
     }
 
     @Inject(method = "renderCrosshair", at = @At("HEAD"), cancellable = true)
-    public void renderCrosshair(GuiGraphics context, CallbackInfo ci) {
+    public void renderCrosshair(GuiGraphics guiGraphics, CallbackInfo ci) {
         if (EditorUI.isActive() && AxiomTwo.showingGrab) {
             ci.cancel();
         }

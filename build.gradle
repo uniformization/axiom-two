@@ -10,11 +10,19 @@ base {
 	archivesName = project.archives_base_name
 }
 
-repositories {}
+repositories {
+	maven {
+		name = 'ParchmentMC'
+		url = 'https://maven.parchmentmc.org'
+	}
+}
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings() // because axiom uses mojmap
+	mappings loom.layered() {
+		officialMojangMappings()
+		parchment("org.parchmentmc.data:parchment-1.20.1:2023.06.26@zip")
+	} // because axiom uses mojmap
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	modCompileOnly files(fileTree(dir: 'libs', include: ['*.jar']))
